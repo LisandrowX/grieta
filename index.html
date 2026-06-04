@@ -14,8 +14,9 @@
   --white:#F2EDE4;
   --red:#D63C2A;
   --red-dim:#8A2518;
-  --gray:#1E1E1E;
-  --gray2:#2C2C2C;
+  --gray:#1A1A1A;
+  --gray2:#262626;
+  --gray3:#333;
   --muted:#5A5A5A;
   --muted2:#3A3A3A;
 }
@@ -29,15 +30,11 @@ body{
   overflow-x:hidden;
   cursor:crosshair;
 }
-
-/* ── NOISE OVERLAY ── */
 body::before{
   content:'';
   position:fixed;top:0;left:0;right:0;bottom:0;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-  opacity:0.03;
-  pointer-events:none;
-  z-index:999;
+  opacity:0.03;pointer-events:none;z-index:999;
 }
 
 /* ── NAV ── */
@@ -49,623 +46,309 @@ nav{
   background:rgba(10,10,10,0.92);
   backdrop-filter:blur(8px);
 }
-.nav-name{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:1.5rem;
-  letter-spacing:0.12em;
-  color:var(--white);
-}
+.nav-name{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:0.12em;color:var(--white);}
 .nav-name span{color:var(--red);}
 .nav-links{display:flex;gap:0;list-style:none;}
 .nav-links a{
-  font-family:'Courier Prime',monospace;
-  font-size:0.72rem;
-  letter-spacing:0.08em;
-  color:var(--muted);
-  text-decoration:none;
-  padding:0.4rem 1rem;
-  border-left:1px solid var(--gray2);
-  transition:color 0.15s,background 0.15s;
+  font-family:'Courier Prime',monospace;font-size:0.72rem;letter-spacing:0.08em;
+  color:var(--muted);text-decoration:none;padding:0.4rem 1rem;
+  border-left:1px solid var(--gray2);transition:color 0.15s,background 0.15s;
 }
 .nav-links a:hover{color:var(--white);background:var(--gray2);}
-.nav-sign{
-  font-family:'Courier Prime',monospace;
-  font-size:0.72rem;
-  letter-spacing:0.1em;
-  color:var(--red);
-  text-decoration:none;
-  border:1px solid var(--red);
-  padding:0.4rem 1rem;
-  transition:background 0.15s,color 0.15s;
+.nav-tag{
+  font-family:'Courier Prime',monospace;font-size:0.7rem;letter-spacing:0.1em;
+  color:var(--red);border:1px solid var(--red-dim);padding:0.4rem 1rem;
 }
-.nav-sign:hover{background:var(--red);color:var(--white);}
+@media(max-width:768px){.nav-links{display:none;}.nav-tag{display:none;}}
 
 /* ── HERO ── */
 .hero{
-  min-height:100vh;
-  padding:7rem 2rem 3rem;
-  position:relative;
-  display:grid;
-  grid-template-rows:auto auto auto;
-  overflow:hidden;
+  min-height:100vh;padding:7rem 2rem 3rem;
+  position:relative;display:grid;grid-template-rows:auto auto auto;overflow:hidden;
 }
-
-/* Giant background number */
 .hero-bg-num{
-  position:absolute;
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(18rem, 40vw, 45rem);
-  line-height:0.85;
-  color:transparent;
-  -webkit-text-stroke:1px var(--gray2);
-  right:-2%;
-  top:50%;
-  transform:translateY(-50%);
-  pointer-events:none;
-  user-select:none;
-  z-index:0;
-  letter-spacing:-0.02em;
+  position:absolute;font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(18rem,40vw,45rem);line-height:0.85;
+  color:transparent;-webkit-text-stroke:1px var(--gray2);
+  right:-2%;top:50%;transform:translateY(-50%);
+  pointer-events:none;user-select:none;z-index:0;letter-spacing:-0.02em;
 }
-
-.hero-top{
-  position:relative;z-index:1;
-  display:flex;
-  align-items:flex-start;
-  gap:2rem;
-  margin-bottom:1.5rem;
-}
+.hero-top{position:relative;z-index:1;margin-bottom:1.5rem;}
 .hero-label{
-  font-family:'Courier Prime',monospace;
-  font-size:0.7rem;
-  letter-spacing:0.15em;
-  color:var(--red);
-  border:1px solid var(--red-dim);
-  padding:0.35rem 0.8rem;
-  white-space:nowrap;
-  margin-top:0.6rem;
+  font-family:'Courier Prime',monospace;font-size:0.7rem;
+  letter-spacing:0.15em;color:var(--red);border:1px solid var(--red-dim);
+  padding:0.35rem 0.8rem;display:inline-block;
 }
-
 .hero-h1{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(5rem, 13vw, 14rem);
-  line-height:0.88;
-  letter-spacing:-0.01em;
-  color:var(--white);
-  position:relative;z-index:1;
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,13vw,14rem);
+  line-height:0.88;letter-spacing:-0.01em;color:var(--white);position:relative;z-index:1;
 }
 .hero-h1 .red{color:var(--red);}
-.hero-h1 .outline{
-  color:transparent;
-  -webkit-text-stroke:2px var(--white);
-}
-
+.hero-h1 .outline{color:transparent;-webkit-text-stroke:2px var(--white);}
 .hero-mid{
-  position:relative;z-index:1;
-  display:grid;
-  grid-template-columns:1fr 2px 1fr;
-  gap:0 2.5rem;
-  align-items:start;
-  margin-top:2rem;
-  padding-top:2rem;
+  position:relative;z-index:1;display:grid;grid-template-columns:1fr 2px 1fr;
+  gap:0 2.5rem;align-items:start;margin-top:2rem;padding-top:2rem;
   border-top:1px solid var(--gray2);
 }
 .hero-divider{background:var(--gray2);}
-.hero-desc{
-  font-size:1.1rem;
-  font-weight:300;
-  color:#9A9A8A;
-  line-height:1.6;
-  max-width:400px;
-}
+.hero-desc{font-size:1.1rem;font-weight:300;color:#9A9A8A;line-height:1.6;max-width:400px;}
 .hero-desc strong{color:var(--white);font-weight:700;}
-
 .hero-right{display:flex;flex-direction:column;gap:1.2rem;}
 .hero-stat-row{
-  display:flex;
-  align-items:baseline;
-  gap:1rem;
-  border-bottom:1px solid var(--gray2);
-  padding-bottom:1rem;
+  display:flex;align-items:baseline;gap:1rem;
+  border-bottom:1px solid var(--gray2);padding-bottom:1rem;
 }
-.hero-stat-n{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:3.5rem;
-  letter-spacing:-0.02em;
-  color:var(--red);
-  line-height:1;
-}
-.hero-stat-l{
-  font-family:'Courier Prime',monospace;
-  font-size:0.7rem;
-  letter-spacing:0.1em;
-  color:var(--muted);
-  text-transform:uppercase;
-}
-
+.hero-stat-n{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;letter-spacing:-0.02em;color:var(--red);line-height:1;}
+.hero-stat-l{font-family:'Courier Prime',monospace;font-size:0.7rem;letter-spacing:0.1em;color:var(--muted);}
 .hero-cta{
-  display:inline-block;
-  margin-top:1rem;
-  font-family:'Bebas Neue',sans-serif;
-  font-size:1.4rem;
-  letter-spacing:0.1em;
-  color:var(--black);
-  background:var(--red);
-  padding:0.9rem 2.5rem;
-  text-decoration:none;
-  border:none;
-  position:relative;
-  transition:transform 0.15s;
-  align-self:flex-start;
+  display:inline-block;margin-top:1rem;font-family:'Bebas Neue',sans-serif;
+  font-size:1.4rem;letter-spacing:0.1em;color:var(--black);background:var(--red);
+  padding:0.9rem 2.5rem;text-decoration:none;position:relative;transition:transform 0.15s;align-self:flex-start;
 }
 .hero-cta::after{
-  content:'';
-  position:absolute;
-  bottom:-4px;right:-4px;
-  width:100%;height:100%;
-  border:1px solid var(--red);
-  z-index:-1;
-  transition:bottom 0.15s,right 0.15s;
+  content:'';position:absolute;bottom:-4px;right:-4px;width:100%;height:100%;
+  border:1px solid var(--red);z-index:-1;transition:bottom 0.15s,right 0.15s;
 }
 .hero-cta:hover{transform:translate(-2px,-2px);}
 .hero-cta:hover::after{bottom:-6px;right:-6px;}
+@media(max-width:768px){.hero-mid{grid-template-columns:1fr;}.hero-divider{display:none;}}
 
 /* ── TICKER ── */
 .ticker{
-  background:var(--red);
-  padding:0.65rem 0;
-  overflow:hidden;
-  white-space:nowrap;
-  border-top:none;
+  background:var(--red);padding:0.65rem 0;overflow:hidden;white-space:nowrap;
   border-bottom:1px solid var(--red-dim);
 }
-.ticker-inner{
-  display:inline-block;
-  animation:ticker 22s linear infinite;
-}
-.ticker-text{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:1rem;
-  letter-spacing:0.18em;
-  color:var(--white);
-  padding:0 2.5rem;
-}
+.ticker-inner{display:inline-block;animation:ticker 22s linear infinite;}
+.ticker-text{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.18em;color:var(--white);padding:0 2.5rem;}
 .ticker-dot{color:rgba(255,255,255,0.4);padding:0 0.5rem;}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* ── SECTIONS COMMON ── */
+/* ── SECTION UTIL ── */
 .section{padding:6rem 2rem;}
 .s-label{
-  font-family:'Courier Prime',monospace;
-  font-size:0.68rem;
-  letter-spacing:0.18em;
-  color:var(--muted);
-  margin-bottom:2rem;
-  display:flex;align-items:center;gap:1rem;
+  font-family:'Courier Prime',monospace;font-size:0.68rem;letter-spacing:0.18em;
+  color:var(--muted);margin-bottom:2rem;display:flex;align-items:center;gap:1rem;
 }
 .s-label::after{content:'';flex:1;height:1px;background:var(--gray2);}
 
+/* ── HERO FOTO ── */
+.hero-foto{
+  width:100%;height:55vh;min-height:380px;
+  position:relative;overflow:hidden;
+  border-top:1px solid var(--gray2);
+  border-bottom:1px solid var(--gray2);
+}
+.hero-foto img{width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:grayscale(30%) contrast(1.1);}
+.hero-foto-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(10,10,10,0.75) 0%,transparent 60%);
+}
+.hero-foto-caption{
+  position:absolute;left:2rem;bottom:2rem;
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,4.5rem);
+  letter-spacing:0.05em;color:var(--white);line-height:0.95;
+}
+.hero-foto-caption span{color:var(--red);}
+.hero-foto-sub{
+  position:absolute;right:2rem;bottom:2rem;
+  font-family:'Courier Prime',monospace;font-size:0.7rem;letter-spacing:0.12em;
+  color:rgba(242,237,228,0.45);text-align:right;line-height:1.6;
+}
+
 /* ── VOCES ── */
 #voces{background:var(--black);}
-
-.voces-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:0;
-  border:1px solid var(--gray2);
-}
+.voces-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--gray2);}
 .voz{
-  padding:2.5rem;
-  border-right:1px solid var(--gray2);
-  border-bottom:1px solid var(--gray2);
-  position:relative;
-  transition:background 0.2s;
+  padding:0;border-right:1px solid var(--gray2);border-bottom:1px solid var(--gray2);
+  position:relative;overflow:hidden;
 }
 .voz:nth-child(2n){border-right:none;}
 .voz:nth-child(3),.voz:nth-child(4){border-bottom:none;}
-.voz:hover{background:var(--gray);}
-
-.voz-num{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:4rem;
-  color:var(--gray2);
-  line-height:1;
-  margin-bottom:0.5rem;
-  letter-spacing:-0.03em;
+.voz-img{
+  width:100%;height:260px;object-fit:cover;
+  filter:grayscale(60%) contrast(1.1);
+  display:block;transition:filter 0.4s ease,transform 0.4s ease;
 }
+.voz:hover .voz-img{filter:grayscale(20%) contrast(1.05);transform:scale(1.03);}
+.voz-body{padding:1.8rem 2rem 2rem;}
+.voz-num{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:var(--gray2);line-height:1;margin-bottom:0.4rem;letter-spacing:-0.03em;}
 .voz-quote{
-  font-family:'Barlow Condensed',sans-serif;
-  font-style:italic;
-  font-size:1.2rem;
-  font-weight:300;
-  color:var(--white);
-  line-height:1.5;
-  margin-bottom:1.5rem;
+  font-family:'Barlow Condensed',sans-serif;font-style:italic;
+  font-size:1.15rem;font-weight:300;color:var(--white);line-height:1.5;margin-bottom:1.4rem;
 }
 .voz-quote::before{content:'"';color:var(--red);font-size:1.4em;line-height:0;vertical-align:-0.2em;margin-right:3px;}
-.voz-author{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
+.voz-author{display:flex;justify-content:space-between;align-items:flex-end;}
+.voz-name{font-family:'Courier Prime',monospace;font-size:0.75rem;font-weight:700;letter-spacing:0.06em;color:var(--white);}
+.voz-place{font-family:'Courier Prime',monospace;font-size:0.65rem;color:var(--muted);letter-spacing:0.06em;margin-top:2px;}
+.voz-tag{font-family:'Courier Prime',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--red);border:1px solid var(--red-dim);padding:0.25rem 0.6rem;white-space:nowrap;}
+@media(max-width:768px){.voces-grid{grid-template-columns:1fr;}.voz{border-right:none !important;}}
+
+/* ── BLOQUE EDITORIAL IMAGEN+TEXTO ── */
+.editorial{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border-top:1px solid var(--gray2);border-bottom:1px solid var(--gray2);
 }
-.voz-name{
-  font-family:'Courier Prime',monospace;
-  font-size:0.75rem;
-  font-weight:700;
-  letter-spacing:0.06em;
-  color:var(--white);
+.editorial.reverse{direction:rtl;}
+.editorial.reverse>*{direction:ltr;}
+.ed-img{
+  position:relative;overflow:hidden;min-height:420px;
 }
-.voz-place{
-  font-family:'Courier Prime',monospace;
-  font-size:0.65rem;
-  color:var(--muted);
-  letter-spacing:0.06em;
-  margin-top:2px;
+.ed-img img{
+  width:100%;height:100%;object-fit:cover;
+  filter:grayscale(50%) contrast(1.1);
+  transition:filter 0.5s ease;display:block;
 }
-.voz-tag{
-  font-family:'Courier Prime',monospace;
-  font-size:0.65rem;
-  letter-spacing:0.1em;
-  color:var(--red);
-  border:1px solid var(--red-dim);
-  padding:0.25rem 0.6rem;
+.editorial:hover .ed-img img{filter:grayscale(10%) contrast(1.05);}
+.ed-img-tag{
+  position:absolute;top:1.5rem;left:1.5rem;
+  font-family:'Courier Prime',monospace;font-size:0.65rem;letter-spacing:0.14em;
+  color:var(--white);background:rgba(10,10,10,0.75);border:1px solid rgba(255,255,255,0.15);
+  padding:0.3rem 0.8rem;
+}
+.ed-text{
+  background:var(--gray);padding:4rem 3rem;
+  display:flex;flex-direction:column;justify-content:center;
+  border-left:1px solid var(--gray2);
+}
+.editorial.reverse .ed-text{border-left:none;border-right:1px solid var(--gray2);}
+.ed-num{
+  font-family:'Bebas Neue',sans-serif;font-size:5rem;
+  color:var(--gray2);line-height:1;letter-spacing:-0.03em;margin-bottom:0.5rem;
+}
+.ed-title{
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,3.5vw,3rem);
+  letter-spacing:0.04em;color:var(--white);line-height:1.05;margin-bottom:1.2rem;
+}
+.ed-title span{color:var(--red);}
+.ed-body{font-size:1rem;font-weight:300;color:#7A7A6A;line-height:1.75;margin-bottom:1.5rem;}
+.ed-body strong{color:var(--white);font-weight:400;}
+.ed-stat{
+  display:flex;align-items:baseline;gap:0.7rem;
+  padding-top:1.2rem;border-top:1px solid var(--gray2);
+}
+.ed-stat-n{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--red);letter-spacing:-0.03em;line-height:1;}
+.ed-stat-l{font-family:'Courier Prime',monospace;font-size:0.68rem;letter-spacing:0.09em;color:var(--muted);line-height:1.5;}
+@media(max-width:768px){
+  .editorial,.editorial.reverse{grid-template-columns:1fr;direction:ltr;}
+  .ed-img{min-height:260px;}
+  .ed-text{padding:2.5rem 1.5rem;}
+  .editorial.reverse .ed-text{border-right:none;border-left:none;}
 }
 
-/* ── DATOS SECTION ── */
-#datos{
-  background:var(--gray);
-  border-top:1px solid var(--gray2);
-  border-bottom:1px solid var(--gray2);
+/* ── GALERIA FRANJA ── */
+.franja{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  border-top:1px solid var(--gray2);border-bottom:1px solid var(--gray2);
+  height:300px;overflow:hidden;
 }
+.franja-item{position:relative;overflow:hidden;border-right:1px solid var(--gray2);}
+.franja-item:last-child{border-right:none;}
+.franja-item img{width:100%;height:100%;object-fit:cover;filter:grayscale(70%) contrast(1.1);transition:filter 0.4s,transform 0.4s;}
+.franja-item:hover img{filter:grayscale(10%);transform:scale(1.06);}
+.franja-label{
+  position:absolute;bottom:0;left:0;right:0;padding:0.8rem 1rem;
+  background:linear-gradient(to top,rgba(10,10,10,0.9),transparent);
+  font-family:'Courier Prime',monospace;font-size:0.65rem;letter-spacing:0.12em;color:rgba(242,237,228,0.7);
+}
+@media(max-width:768px){.franja{grid-template-columns:1fr 1fr;height:auto;}.franja-item{height:180px;}}
 
-.datos-layout{
-  display:grid;
-  grid-template-columns:1.2fr 1fr;
-  gap:5rem;
-  align-items:center;
-}
-.datos-text{}
+/* ── DATOS ── */
+#datos{background:var(--gray);border-top:1px solid var(--gray2);border-bottom:1px solid var(--gray2);}
+.datos-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:5rem;align-items:center;}
 .datos-title{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(3rem,6vw,6.5rem);
-  line-height:0.9;
-  letter-spacing:-0.01em;
-  color:var(--white);
-  margin-bottom:2rem;
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,6vw,6.5rem);
+  line-height:0.9;letter-spacing:-0.01em;color:var(--white);margin-bottom:2rem;
 }
 .datos-title .red{color:var(--red);}
 .datos-title .outline{color:transparent;-webkit-text-stroke:1.5px var(--white);}
-.datos-body{
-  font-size:1rem;
-  font-weight:300;
-  color:#7A7A6A;
-  line-height:1.7;
-  max-width:380px;
-}
+.datos-body{font-size:1rem;font-weight:300;color:#7A7A6A;line-height:1.7;max-width:380px;}
 .datos-body strong{color:var(--white);}
-
-.datos-nums{}
-.dato-item{
-  display:flex;
-  align-items:baseline;
-  gap:1.2rem;
-  padding:1.8rem 0;
-  border-bottom:1px solid var(--gray2);
-}
+.dato-item{display:flex;align-items:baseline;gap:1.2rem;padding:1.8rem 0;border-bottom:1px solid var(--gray2);}
 .dato-item:first-child{border-top:1px solid var(--gray2);}
-.dato-n{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:3.8rem;
-  letter-spacing:-0.03em;
-  color:var(--white);
-  line-height:1;
-  min-width:120px;
-}
+.dato-n{font-family:'Bebas Neue',sans-serif;font-size:3.8rem;letter-spacing:-0.03em;color:var(--white);line-height:1;min-width:120px;}
 .dato-n.accent{color:var(--red);}
-.dato-desc{
-  font-family:'Courier Prime',monospace;
-  font-size:0.75rem;
-  letter-spacing:0.07em;
-  color:var(--muted);
-  line-height:1.5;
-}
+.dato-desc{font-family:'Courier Prime',monospace;font-size:0.75rem;letter-spacing:0.07em;color:var(--muted);line-height:1.5;}
+@media(max-width:768px){.datos-layout{grid-template-columns:1fr;gap:3rem;}}
 
 /* ── PILARES ── */
 #pilares{background:var(--black);}
-
-.pilares-list{
-  display:flex;
-  flex-direction:column;
-  gap:0;
-}
+.pilares-list{display:flex;flex-direction:column;}
 .pilar{
-  display:grid;
-  grid-template-columns:80px 1fr 1fr;
-  gap:2rem;
-  align-items:start;
-  padding:2.5rem 0;
-  border-bottom:1px solid var(--gray2);
-  transition:background 0.15s;
+  display:grid;grid-template-columns:80px 1fr 1fr;gap:2rem;align-items:start;
+  padding:2.5rem 0;border-bottom:1px solid var(--gray2);
+  transition:background 0.15s,padding-left 0.2s;
 }
 .pilar:first-child{border-top:1px solid var(--gray2);}
 .pilar:hover{background:var(--gray);padding-left:1.5rem;margin-left:-1.5rem;padding-right:1.5rem;}
-.pilar-index{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:2.5rem;
-  color:var(--gray2);
-  letter-spacing:-0.02em;
-  line-height:1;
-}
-.pilar-titulo{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:1.8rem;
-  letter-spacing:0.04em;
-  color:var(--white);
-  line-height:1.1;
-}
+.pilar-index{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--gray2);letter-spacing:-0.02em;line-height:1;}
+.pilar-titulo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.04em;color:var(--white);line-height:1.1;}
 .pilar-titulo span{color:var(--red);}
-.pilar-desc{
-  font-size:0.95rem;
-  font-weight:300;
-  color:#6A6A5A;
-  line-height:1.65;
-  padding-top:0.3rem;
-}
+.pilar-desc{font-size:0.95rem;font-weight:300;color:#6A6A5A;line-height:1.65;padding-top:0.3rem;}
+@media(max-width:768px){.pilar{grid-template-columns:50px 1fr;}.pilar-desc{grid-column:2;}}
 
-/* ── MANIFIESTO ── */
-#manifiesto{
-  background:var(--white);
-  color:var(--black);
+/* ── CITA GRANDE ── */
+.cita-bloque{
+  padding:6rem 2rem;background:var(--red);
+  border-top:1px solid var(--red-dim);border-bottom:1px solid var(--red-dim);
+  text-align:center;
 }
-#manifiesto .s-label{color:#999;border-color:#ccc;}
-#manifiesto .s-label::after{background:#ddd;}
-
-.man-layout{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:5rem;
-  align-items:start;
-}
-.man-left{}
-.man-title{
+.cita-texto{
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(3.5rem,7vw,8rem);
-  line-height:0.88;
-  letter-spacing:-0.01em;
-  color:var(--black);
-  margin-bottom:2rem;
+  font-size:clamp(2.2rem,5vw,5.5rem);
+  letter-spacing:0.04em;color:var(--white);
+  line-height:0.95;max-width:900px;margin:0 auto 1.5rem;
 }
-.man-title .red{color:var(--red);}
-.man-texto{
-  font-family:'Courier Prime',monospace;
-  font-size:0.95rem;
-  line-height:1.8;
-  color:#444;
-  border-left:3px solid var(--red);
-  padding-left:1.5rem;
-  margin-bottom:2.5rem;
-}
-.man-counter{
-  display:flex;
-  align-items:baseline;
-  gap:0.8rem;
-}
-.man-n{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:4.5rem;
-  letter-spacing:-0.04em;
-  color:var(--red);
-  line-height:1;
-}
-.man-l{
-  font-family:'Courier Prime',monospace;
-  font-size:0.7rem;
-  letter-spacing:0.1em;
-  color:#888;
-}
-
-.man-right{}
-.man-form{display:flex;flex-direction:column;gap:0;}
-.form-row{
-  display:flex;
-  flex-direction:column;
-  gap:0.4rem;
-  border-bottom:1px solid #ddd;
-  padding:1.2rem 0;
-}
-.form-row:first-child{border-top:1px solid #ddd;}
-.form-label{
-  font-family:'Courier Prime',monospace;
-  font-size:0.65rem;
-  letter-spacing:0.15em;
-  color:#aaa;
-}
-.form-input{
-  background:transparent;
-  border:none;
-  outline:none;
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:1.5rem;
-  font-weight:300;
-  color:var(--black);
-  width:100%;
-  padding:0.2rem 0;
-}
-.form-input::placeholder{color:#ccc;}
-.form-btn{
-  margin-top:2rem;
-  background:var(--black);
-  color:var(--white);
-  border:none;
-  font-family:'Bebas Neue',sans-serif;
-  font-size:1.4rem;
-  letter-spacing:0.12em;
-  padding:1.1rem 2rem;
-  cursor:crosshair;
-  text-align:left;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  transition:background 0.15s;
-  width:100%;
-}
-.form-btn:hover{background:var(--red);}
-.form-btn span{font-size:1.8rem;transition:transform 0.2s;}
-.form-btn:hover span{transform:translateX(6px);}
+.cita-autor{font-family:'Courier Prime',monospace;font-size:0.75rem;letter-spacing:0.14em;color:rgba(242,237,228,0.6);}
 
 /* ── COMUNIDADES ── */
-#comunidades{
-  background:var(--gray);
-  border-top:1px solid var(--gray2);
-}
+#comunidades{background:var(--gray);border-top:1px solid var(--gray2);}
 .com-grid{
-  display:flex;
-  flex-wrap:wrap;
-  gap:0;
-  border:1px solid var(--gray2);
-  margin-top:1rem;
+  display:flex;flex-wrap:wrap;border:1px solid var(--gray2);margin-top:1rem;
 }
 .com-item{
-  flex:0 0 calc(100%/3);
-  border-right:1px solid var(--gray2);
-  border-bottom:1px solid var(--gray2);
-  padding:2rem;
-  display:flex;
-  align-items:center;
-  gap:1.2rem;
-  transition:background 0.2s;
-  cursor:default;
+  flex:0 0 calc(100%/3);border-right:1px solid var(--gray2);border-bottom:1px solid var(--gray2);
+  padding:1.8rem 2rem;display:flex;align-items:center;gap:1.2rem;
+  transition:background 0.2s;cursor:default;
 }
 .com-item:nth-child(3n){border-right:none;}
 .com-item:nth-last-child(-n+3){border-bottom:none;}
 .com-item:hover{background:var(--gray2);}
-.com-line{
-  width:3px;
-  height:36px;
-  flex-shrink:0;
-}
-.cl1{background:var(--red);}
-.cl2{background:#5B9E75;}
-.cl3{background:#7A6EA0;}
-.cl4{background:#4A8AAD;}
-.cl5{background:#C9A030;}
-.cl6{background:#888;}
-.com-name{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:1.05rem;
-  font-weight:700;
-  letter-spacing:0.04em;
-  color:var(--white);
-  line-height:1.2;
-}
-.com-sub{
-  font-family:'Courier Prime',monospace;
-  font-size:0.65rem;
-  color:var(--muted);
-  margin-top:2px;
-}
+.com-line{width:3px;height:36px;flex-shrink:0;}
+.com-name{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:700;letter-spacing:0.04em;color:var(--white);line-height:1.2;}
+.com-sub{font-family:'Courier Prime',monospace;font-size:0.65rem;color:var(--muted);margin-top:2px;}
+@media(max-width:768px){.com-item{flex:0 0 100%;border-right:none;}}
 
 /* ── FOOTER ── */
 footer{
-  background:var(--black);
-  border-top:1px solid var(--gray2);
-  padding:3rem 2rem;
-  display:grid;
-  grid-template-columns:1fr 1px 1fr 1px 1fr;
-  gap:0 3rem;
-  align-items:start;
+  background:var(--black);border-top:1px solid var(--gray2);padding:3rem 2rem;
+  display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr;gap:0 3rem;align-items:start;
 }
 .ft-div{background:var(--gray2);}
-.ft-brand{}
-.ft-title{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:2.5rem;
-  letter-spacing:0.1em;
-  color:var(--white);
-  line-height:1;
-  margin-bottom:0.5rem;
-}
+.ft-title{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:0.1em;color:var(--white);line-height:1;margin-bottom:0.5rem;}
 .ft-title span{color:var(--red);}
-.ft-sub{
-  font-family:'Courier Prime',monospace;
-  font-size:0.7rem;
-  letter-spacing:0.08em;
-  color:var(--muted);
-  line-height:1.7;
-}
-.ft-col h4{
-  font-family:'Courier Prime',monospace;
-  font-size:0.65rem;
-  letter-spacing:0.14em;
-  color:var(--muted2);
-  margin-bottom:1.2rem;
-}
+.ft-sub{font-family:'Courier Prime',monospace;font-size:0.7rem;letter-spacing:0.08em;color:var(--muted);line-height:1.7;}
+.ft-col h4{font-family:'Courier Prime',monospace;font-size:0.65rem;letter-spacing:0.14em;color:var(--muted2);margin-bottom:1.2rem;}
 .ft-col ul{list-style:none;}
 .ft-col li{margin-bottom:0.6rem;}
-.ft-col a{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:1rem;
-  font-weight:300;
-  color:var(--muted);
-  text-decoration:none;
-  letter-spacing:0.04em;
-  transition:color 0.15s;
-}
+.ft-col a{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:300;color:var(--muted);text-decoration:none;letter-spacing:0.04em;transition:color 0.15s;}
 .ft-col a:hover{color:var(--red);}
 .footer-bottom{
-  background:var(--black);
-  border-top:1px solid var(--gray2);
-  padding:1rem 2rem;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+  background:var(--black);border-top:1px solid var(--gray2);padding:1rem 2rem;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;
 }
-.footer-bottom p{
-  font-family:'Courier Prime',monospace;
-  font-size:0.65rem;
-  letter-spacing:0.08em;
-  color:var(--muted2);
-}
+.footer-bottom p{font-family:'Courier Prime',monospace;font-size:0.65rem;letter-spacing:0.08em;color:var(--muted2);}
+@media(max-width:768px){footer{grid-template-columns:1fr;}.ft-div{display:none;}}
 
-/* ── FADE IN ── */
-.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease;}
+/* ── ANIMACIONES ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.75s ease,transform 0.75s ease;}
 .reveal.visible{opacity:1;transform:none;}
-
-/* ── TOAST ── */
-.toast{
-  position:fixed;bottom:2.5rem;right:2rem;
-  background:var(--white);
-  color:var(--black);
-  font-family:'Courier Prime',monospace;
-  font-size:0.78rem;
-  letter-spacing:0.06em;
-  padding:1rem 1.5rem;
-  border-left:3px solid var(--red);
-  opacity:0;transform:translateX(20px);
-  transition:all 0.3s;pointer-events:none;z-index:999;
-}
-.toast.show{opacity:1;transform:translateX(0);}
-
-/* ── RESPONSIVE ── */
-@media(max-width:768px){
-  .hero-mid{grid-template-columns:1fr;}
-  .hero-divider{display:none;}
-  .voces-grid{grid-template-columns:1fr;}
-  .voz:nth-child(2n){border-right:none;}
-  .voz:nth-child(n){border-right:none;}
-  .datos-layout{grid-template-columns:1fr;gap:3rem;}
-  .pilar{grid-template-columns:50px 1fr;}
-  .pilar-desc{grid-column:2;}
-  .man-layout{grid-template-columns:1fr;gap:3rem;}
-  .com-item{flex:0 0 100%;border-right:none;}
-  footer{grid-template-columns:1fr;}
-  .ft-div{display:none;}
-  .nav-links{display:none;}
-  .hero-bg-num{font-size:40vw;right:-5%;}
-}
+.reveal-left{opacity:0;transform:translateX(-30px);transition:opacity 0.75s ease,transform 0.75s ease;}
+.reveal-left.visible{opacity:1;transform:none;}
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <div class="nav-name">GRI<span>ETA</span></div>
   <ul class="nav-links">
@@ -674,45 +357,40 @@ footer{
     <li><a href="#pilares">PILARES</a></li>
     <li><a href="#comunidades">COMUNIDADES</a></li>
   </ul>
-  <a href="#manifiesto" class="nav-sign">FIRMAR</a>
+  <span class="nav-tag">COLOMBIA · 2025</span>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg-num">∞</div>
-
-  <div class="hero-top">
-    <span class="hero-label">COLOMBIA · 2025</span>
-  </div>
-
+  <div class="hero-top"><span class="hero-label">CAMPAÑA POR LA INCLUSIÓN REAL</span></div>
   <h1 class="hero-h1">
     NADIE<br>
     <span class="outline">SOBRA</span><br>
     <span class="red">AQUÍ.</span>
   </h1>
-
   <div class="hero-mid">
     <p class="hero-desc">
-      <strong>GRIETA</strong> es una campaña por la inclusión real —
-      no la que se publica en afiches, sino la que ocurre cuando
+      <strong>GRIETA</strong> es una campaña de concientización —
+      no la inclusión que se publica en afiches, sino la que ocurre cuando
       una persona puede entrar a un espacio y sentir que tiene el
       mismo derecho que todos de estar ahí.
     </p>
     <div class="hero-divider"></div>
     <div class="hero-right">
       <div class="hero-stat-row">
-        <span class="hero-stat-n">9,241</span>
-        <span class="hero-stat-l">FIRMAS RECOGIDAS</span>
+        <span class="hero-stat-n">87</span>
+        <span class="hero-stat-l">PUEBLOS INDÍGENAS EN COLOMBIA</span>
       </div>
       <div class="hero-stat-row">
-        <span class="hero-stat-n">1,287</span>
-        <span class="hero-stat-l">HISTORIAS COMPARTIDAS</span>
+        <span class="hero-stat-n">65%</span>
+        <span class="hero-stat-l">AFROS REPORTAN DISCRIMINACIÓN LABORAL</span>
       </div>
       <div class="hero-stat-row" style="border:none">
-        <span class="hero-stat-n">48</span>
-        <span class="hero-stat-l">CIUDADES REPRESENTADAS</span>
+        <span class="hero-stat-n">4 de 5</span>
+        <span class="hero-stat-l">PERSONAS CON DISCAPACIDAD SIN EMPLEO FORMAL</span>
       </div>
-      <a href="#manifiesto" class="hero-cta">FIRMA EL MANIFIESTO</a>
+      <a href="#voces" class="hero-cta">LEER LAS HISTORIAS</a>
     </div>
   </div>
 </section>
@@ -739,61 +417,171 @@ footer{
   </div>
 </div>
 
+<!-- FOTO APERTURA -->
+<div class="hero-foto reveal">
+  <img src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=1600&q=80&auto=format&fit=crop" alt="Personas de distintas comunidades caminando juntas">
+  <div class="hero-foto-overlay"></div>
+  <div class="hero-foto-caption">LA DIVERSIDAD<br>NO ES <span>UNA OPCIÓN.</span><br>ES NUESTRA FUERZA.</div>
+  <div class="hero-foto-sub">COLOMBIA<br>TIERRA DE TODAS LAS PIELES<br>Y TODAS LAS VOCES</div>
+</div>
+
 <!-- VOCES -->
 <section id="voces" class="section">
   <div class="s-label reveal">01 — VOCES REALES</div>
   <div class="voces-grid reveal">
 
     <div class="voz">
-      <div class="voz-num">01</div>
-      <p class="voz-quote">Llegué a la universidad siendo la única persona negra en mi salón. Hoy soy docente y trabajo para que eso cambie.</p>
-      <div class="voz-author">
-        <div>
-          <div class="voz-name">MARCELA LARGO</div>
-          <div class="voz-place">Cali, Valle del Cauca</div>
+      <img class="voz-img" src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=800&q=80&auto=format&fit=crop&crop=faces" alt="Mujer afrocolombiana">
+      <div class="voz-body">
+        <div class="voz-num">01</div>
+        <p class="voz-quote">Llegué a la universidad siendo la única persona negra en mi salón. Hoy soy docente y trabajo para que eso cambie.</p>
+        <div class="voz-author">
+          <div>
+            <div class="voz-name">ANA CASSIANI</div>
+            <div class="voz-place">Barranquilla, Atlántico</div>
+          </div>
+          <span class="voz-tag">COMUNIDAD AFRO</span>
         </div>
-        <span class="voz-tag">COMUNIDAD AFRO</span>
       </div>
     </div>
 
     <div class="voz">
-      <div class="voz-num">02</div>
-      <p class="voz-quote">Mi lengua, el wayuunaiki, es parte de quién soy. Exijo que el Estado la proteja y que mis hijos puedan aprenderla.</p>
-      <div class="voz-author">
-        <div>
-          <div class="voz-name">AMELIA PUSHAINA</div>
-          <div class="voz-place">Riohacha, La Guajira</div>
+      <img class="voz-img" src="https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=800&q=80&auto=format&fit=crop&crop=faces" alt="Persona indígena">
+      <div class="voz-body">
+        <div class="voz-num">02</div>
+        <p class="voz-quote">Mi lengua, el wayuunaiki, es parte de quién soy. Exijo que el Estado la proteja y que mis hijos puedan aprenderla.</p>
+        <div class="voz-author">
+          <div>
+            <div class="voz-name">ROSA EPIAYÙ</div>
+            <div class="voz-place">Riohacha, La Guajira</div>
+          </div>
+          <span class="voz-tag">PUEBLO WAYÚU</span>
         </div>
-        <span class="voz-tag">PUEBLO WAYÚU</span>
       </div>
     </div>
 
     <div class="voz">
-      <div class="voz-num">03</div>
-      <p class="voz-quote">Salir del clóset fue lo más valiente que hice. Quiero que la próxima generación no tenga que ser tan valiente por el mismo motivo.</p>
-      <div class="voz-author">
-        <div>
-          <div class="voz-name">DIEGO FUENTES</div>
-          <div class="voz-place">Medellín, Antioquia</div>
+      <img class="voz-img" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80&auto=format&fit=crop&crop=faces" alt="Personas diversas juntas">
+      <div class="voz-body">
+        <div class="voz-num">03</div>
+        <p class="voz-quote">Salir del clóset fue lo más valiente que hice. Quiero que la próxima generación no tenga que ser tan valiente por el mismo motivo.</p>
+        <div class="voz-author">
+          <div>
+            <div class="voz-name">CAMILO TORRES</div>
+            <div class="voz-place">Barranquilla, Atlántico</div>
+          </div>
+          <span class="voz-tag">LGBTQ+</span>
         </div>
-        <span class="voz-tag">LGBTQ+</span>
       </div>
     </div>
 
     <div class="voz">
-      <div class="voz-num">04</div>
-      <p class="voz-quote">Uso silla de ruedas. El transporte público me excluyó por años. Ahora defiendo el derecho de todos a moverse libremente.</p>
-      <div class="voz-author">
-        <div>
-          <div class="voz-name">JULIÁN ESPINOSA</div>
-          <div class="voz-place">Bogotá D.C.</div>
+      <img class="voz-img" src="https://images.unsplash.com/photo-1542156822-6924d1a71ace?w=800&q=80&auto=format&fit=crop&crop=faces" alt="Persona con discapacidad">
+      <div class="voz-body">
+        <div class="voz-num">04</div>
+        <p class="voz-quote">Uso silla de ruedas. El transporte público me excluyó por años. Ahora defiendo el derecho de todos a moverse libremente.</p>
+        <div class="voz-author">
+          <div>
+            <div class="voz-name">SEBASTIÁN NIETO</div>
+            <div class="voz-place">Bogotá D.C.</div>
+          </div>
+          <span class="voz-tag">DISCAPACIDAD</span>
         </div>
-        <span class="voz-tag">DISCAPACIDAD</span>
       </div>
     </div>
 
   </div>
 </section>
+
+<!-- EDITORIAL 1 — EDUCACIÓN -->
+<div class="editorial reveal">
+  <div class="ed-img">
+    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=900&q=80&auto=format&fit=crop" alt="Niños en aula diversa">
+    <span class="ed-img-tag">EDUCACIÓN INCLUSIVA</span>
+  </div>
+  <div class="ed-text">
+    <div class="ed-num">I</div>
+    <h3 class="ed-title">EL AULA ES <span>DE TODOS</span></h3>
+    <p class="ed-body">
+      En Colombia, miles de niños y niñas con discapacidad, pertenecientes a comunidades indígenas
+      o en situación de migración, enfrentan barreras para acceder a una educación de calidad.
+      <strong>El sistema educativo debería ser el primer lugar donde nadie se sienta excluido.</strong>
+    </p>
+    <div class="ed-stat">
+      <span class="ed-stat-n">1 de 3</span>
+      <span class="ed-stat-l">NIÑOS CON DISCAPACIDAD<br>NO ACCEDE A EDUCACIÓN FORMAL<br>EN ZONAS RURALES</span>
+    </div>
+  </div>
+</div>
+
+<!-- FRANJA DE FOTOS -->
+<div class="franja reveal">
+  <div class="franja-item">
+    <img src="https://images.unsplash.com/photo-1607748862156-7c548e7e98f4?w=600&q=80&auto=format&fit=crop&crop=faces" alt="Comunidad diversa">
+    <div class="franja-label">COMUNIDAD</div>
+  </div>
+  <div class="franja-item">
+    <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=600&q=80&auto=format&fit=crop&crop=faces" alt="Profesional diversa">
+    <div class="franja-label">TRABAJO DIGNO</div>
+  </div>
+  <div class="franja-item">
+    <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=600&q=80&auto=format&fit=crop&crop=faces" alt="Personas marchando">
+    <div class="franja-label">VOZ Y PROTESTA</div>
+  </div>
+  <div class="franja-item">
+    <img src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=600&q=80&auto=format&fit=crop&crop=faces" alt="Amistad diversa">
+    <div class="franja-label">PERTENENCIA</div>
+  </div>
+</div>
+
+<!-- EDITORIAL 2 — TRABAJO (reverse) -->
+<div class="editorial reverse reveal">
+  <div class="ed-img">
+    <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=900&q=80&auto=format&fit=crop" alt="Personas trabajando en equipo diverso">
+    <span class="ed-img-tag">TRABAJO DIGNO</span>
+  </div>
+  <div class="ed-text">
+    <div class="ed-num">II</div>
+    <h3 class="ed-title">TALENTO SIN <span>ETIQUETAS</span></h3>
+    <p class="ed-body">
+      El origen étnico, la orientación sexual o tener una discapacidad
+      no deberían determinar el acceso a oportunidades laborales.
+      <strong>La meritocracia real solo existe cuando el punto de partida es igual para todos.</strong>
+    </p>
+    <div class="ed-stat">
+      <span class="ed-stat-n">65%</span>
+      <span class="ed-stat-l">DE PERSONAS AFROCOLOMBIANAS<br>REPORTAN DISCRIMINACIÓN<br>EN PROCESOS DE SELECCIÓN</span>
+    </div>
+  </div>
+</div>
+
+<!-- EDITORIAL 3 — REPRESENTACIÓN -->
+<div class="editorial reveal">
+  <div class="ed-img">
+    <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=900&q=80&auto=format&fit=crop" alt="Reunión con personas diversas">
+    <span class="ed-img-tag">REPRESENTACIÓN</span>
+  </div>
+  <div class="ed-text">
+    <div class="ed-num">III</div>
+    <h3 class="ed-title">SI NO TE VEN, <span>NO EXISTES</span></h3>
+    <p class="ed-body">
+      Las instituciones, los medios de comunicación y los espacios de poder
+      deben reflejar la diversidad del país que dicen representar.
+      <strong>La representación no es cuota, es justicia.</strong>
+      Cuando alguien se ve reflejado, siente que tiene derecho a estar ahí.
+    </p>
+    <div class="ed-stat">
+      <span class="ed-stat-n">8%</span>
+      <span class="ed-stat-l">DE LOS CARGOS DE ELECCIÓN<br>POPULAR SON OCUPADOS POR<br>PERSONAS AFROCOLOMBIANAS</span>
+    </div>
+  </div>
+</div>
+
+<!-- CITA GRANDE -->
+<div class="cita-bloque reveal">
+  <p class="cita-texto">"LA INDIFERENCIA<br>TAMBIÉN ES<br>UNA POSICIÓN."</p>
+  <p class="cita-autor">— GRIETA · CAMPAÑA POR LA INCLUSIÓN SOCIAL · COLOMBIA 2025</p>
+</div>
 
 <!-- DATOS -->
 <section id="datos" class="section">
@@ -809,7 +597,8 @@ footer{
         Colombia es uno de los países más biodiversos del mundo —
         en fauna, en flora, y en <strong>su gente</strong>. Sin embargo,
         la exclusión sistemática sigue siendo una realidad documentada
-        que afecta millones de personas cada día.
+        que afecta a millones de personas cada día.
+        Conocer los datos es el primer paso para cambiarlos.
       </p>
     </div>
     <div class="datos-nums">
@@ -865,91 +654,46 @@ footer{
   <div class="s-label reveal">04 — QUIÉNES SOMOS</div>
   <div class="com-grid reveal">
     <div class="com-item">
-      <div class="com-line cl1"></div>
+      <div class="com-line" style="background:#D63C2A;"></div>
       <div>
         <div class="com-name">COMUNIDADES AFROCOLOMBIANAS</div>
         <div class="com-sub">CARIBE · PACÍFICO · CENTROS URBANOS</div>
       </div>
     </div>
     <div class="com-item">
-      <div class="com-line cl2"></div>
+      <div class="com-line" style="background:#5B9E75;"></div>
       <div>
         <div class="com-name">PUEBLOS INDÍGENAS</div>
         <div class="com-sub">87 PUEBLOS RECONOCIDOS EN COLOMBIA</div>
       </div>
     </div>
     <div class="com-item">
-      <div class="com-line cl3"></div>
+      <div class="com-line" style="background:#7A6EA0;"></div>
       <div>
         <div class="com-name">PERSONAS LGBTQ+</div>
         <div class="com-sub">IDENTIDAD · ORIENTACIÓN · EXPRESIÓN</div>
       </div>
     </div>
     <div class="com-item">
-      <div class="com-line cl4"></div>
+      <div class="com-line" style="background:#4A8AAD;"></div>
       <div>
         <div class="com-name">PERSONAS CON DISCAPACIDAD</div>
         <div class="com-sub">FÍSICA · SENSORIAL · COGNITIVA</div>
       </div>
     </div>
     <div class="com-item">
-      <div class="com-line cl5"></div>
+      <div class="com-line" style="background:#C9A030;"></div>
       <div>
         <div class="com-name">MIGRANTES Y REFUGIADOS</div>
         <div class="com-sub">+2.9 MILLONES EN COLOMBIA</div>
       </div>
     </div>
     <div class="com-item">
-      <div class="com-line" style="background:#C9A030;"></div>
+      <div class="com-line" style="background:#888;"></div>
       <div>
         <div class="com-name">MUJERES RURALES</div>
         <div class="com-sub">CAMPO · TERRITORIO · ECONOMÍA</div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- MANIFIESTO -->
-<section id="manifiesto" class="section">
-  <div class="s-label reveal" style="color:#999;">05 — EL MANIFIESTO</div>
-  <div class="man-layout reveal">
-    <div class="man-left">
-      <h2 class="man-title">
-        FIRMA.<br>
-        <span class="red">TOMA</span><br>
-        POSICIÓN.
-      </h2>
-      <p class="man-texto">
-        "Creo en una Colombia donde cada persona —
-        sin importar su origen, su identidad, su cuerpo
-        o su historia — tiene el mismo derecho
-        a vivir con dignidad, oportunidad y pertenencia.
-        La indiferencia también es una posición.
-        Yo elijo otra."
-      </p>
-      <div class="man-counter">
-        <span class="man-n" id="sig-count">9,241</span>
-        <span class="man-l">PERSONAS YA<br>FIRMARON</span>
-      </div>
-    </div>
-    <div class="man-right">
-      <div class="man-form">
-        <div class="form-row">
-          <label class="form-label">NOMBRE COMPLETO</label>
-          <input class="form-input" id="fn" type="text" placeholder="Tu nombre">
-        </div>
-        <div class="form-row">
-          <label class="form-label">CIUDAD</label>
-          <input class="form-input" id="fc" type="text" placeholder="Tu ciudad">
-        </div>
-        <div class="form-row">
-          <label class="form-label">CORREO (OPCIONAL)</label>
-          <input class="form-input" id="fe" type="email" placeholder="tu@correo.com">
-        </div>
-      </div>
-      <button class="form-btn" onclick="firmar()">
-        FIRMAR EL MANIFIESTO <span>→</span>
-      </button>
     </div>
   </div>
 </section>
@@ -959,9 +703,9 @@ footer{
   <div class="ft-brand">
     <div class="ft-title">GRI<span>ETA</span></div>
     <p class="ft-sub">
-      UNA CAMPAÑA POR LA INCLUSIÓN<br>
-      SOCIAL Y LA DIVERSIDAD.<br>
-      COLOMBIA, 2025.
+      UNA CAMPAÑA DE CONCIENTIZACIÓN<br>
+      POR LA INCLUSIÓN SOCIAL<br>
+      Y LA DIVERSIDAD. COLOMBIA, 2026.
     </p>
   </div>
   <div class="ft-div"></div>
@@ -972,7 +716,6 @@ footer{
       <li><a href="#datos">Datos</a></li>
       <li><a href="#pilares">Pilares</a></li>
       <li><a href="#comunidades">Comunidades</a></li>
-      <li><a href="#manifiesto">Manifiesto</a></li>
     </ul>
   </div>
   <div class="ft-div"></div>
@@ -987,43 +730,21 @@ footer{
   </div>
 </footer>
 <div class="footer-bottom">
-  <p>© 2025 GRIETA — CAMPAÑA POR LA INCLUSIÓN SOCIAL</p>
-  <p>HECHO CON PROPÓSITO EN COLOMBIA</p>
+  <p>© 2026 GRIETA — CAMPAÑA POR LA INCLUSIÓN SOCIAL</p>
+  <p>HECHO CON PROPÓSITO EN BARRANQUILLA, COLOMBIA POR <br>
+  Tomàs Cervera, Kevin Martìnez, Robbie Sandoval, Jesùs Martìnez</p>
 </div>
 
-<div class="toast" id="toast">FIRMA REGISTRADA. GRACIAS POR TOMAR POSICIÓN.</div>
-
 <script>
-const obs = new IntersectionObserver(entries => {
-  entries.forEach((e,i) => {
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
     if(e.isIntersecting){
-      setTimeout(()=>e.target.classList.add('visible'), i*90);
+      setTimeout(()=>e.target.classList.add('visible'),i*80);
       obs.unobserve(e.target);
     }
   });
-},{threshold:0.1});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-let count = 9241;
-function firmar(){
-  const n=document.getElementById('fn').value.trim();
-  const c=document.getElementById('fc').value.trim();
-  if(!n||!c){
-    [document.getElementById('fn'),document.getElementById('fc')].forEach(el=>{
-      if(!el.value.trim()) el.style.borderBottom='2px solid #D63C2A';
-    });
-    return;
-  }
-  count++;
-  document.getElementById('sig-count').textContent=count.toLocaleString('es-CO');
-  document.getElementById('fn').value='';
-  document.getElementById('fc').value='';
-  document.getElementById('fe').value='';
-  ['fn','fc'].forEach(id=>document.getElementById(id).style.borderBottom='');
-  const t=document.getElementById('toast');
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),3500);
-}
+},{threshold:0.08});
+document.querySelectorAll('.reveal,.reveal-left').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>
