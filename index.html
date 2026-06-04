@@ -63,16 +63,17 @@ nav{
 
 /* ── HERO ── */
 .hero{
-  min-height:100vh;padding:7rem 2rem 3rem;
-  position:relative;display:grid;grid-template-rows:auto auto auto;overflow:hidden;
+  min-height:100vh;
+  padding:7rem 2rem 3rem;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  overflow:hidden;
 }
-.hero-bg-num{
-  position:absolute;font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(18rem,40vw,45rem);line-height:0.85;
-  color:transparent;-webkit-text-stroke:1px var(--gray2);
-  right:-2%;top:50%;transform:translateY(-50%);
-  pointer-events:none;user-select:none;z-index:0;letter-spacing:-0.02em;
-}
+
 .hero-top{position:relative;z-index:1;margin-bottom:1.5rem;}
 .hero-label{
   font-family:'Courier Prime',monospace;font-size:0.7rem;
@@ -357,12 +358,11 @@ footer{
     <li><a href="#pilares">PILARES</a></li>
     <li><a href="#comunidades">COMUNIDADES</a></li>
   </ul>
-  <span class="nav-tag">APOYANOS</span>
+  <span class="nav-tag">APOYA</span>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg-num">∞</div>
   <div class="hero-top"><span class="hero-label">CAMPAÑA POR LA INCLUSIÓN REAL</span></div>
   <h1 class="hero-h1">
     NADIE<br>
