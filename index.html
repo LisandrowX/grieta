@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRIETA — Por la inclusión real</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --black:#0A0A0A;
+  --white:#F2EDE4;
+  --red:#D63C2A;
+  --red-dim:#8A2518;
+  --gray:#1E1E1E;
+  --gray2:#2C2C2C;
+  --muted:#5A5A5A;
+  --muted2:#3A3A3A;
+}
+html{scroll-behavior:smooth;}
+::selection{background:var(--red);color:var(--white);}
+body{
+  background:var(--black);
+  color:var(--white);
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:300;
+  overflow-x:hidden;
+  cursor:crosshair;
+}
+
+/* ── NOISE OVERLAY ── */
+body::before{
+  content:'';
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity:0.03;
+  pointer-events:none;
+  z-index:999;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 2rem;
+  border-bottom:1px solid var(--gray2);
+  background:rgba(10,10,10,0.92);
+  backdrop-filter:blur(8px);
+}
+.nav-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.5rem;
+  letter-spacing:0.12em;
+  color:var(--white);
+}
+.nav-name span{color:var(--red);}
+.nav-links{display:flex;gap:0;list-style:none;}
+.nav-links a{
+  font-family:'Courier Prime',monospace;
+  font-size:0.72rem;
+  letter-spacing:0.08em;
+  color:var(--muted);
+  text-decoration:none;
+  padding:0.4rem 1rem;
+  border-left:1px solid var(--gray2);
+  transition:color 0.15s,background 0.15s;
+}
+.nav-links a:hover{color:var(--white);background:var(--gray2);}
+.nav-sign{
+  font-family:'Courier Prime',monospace;
+  font-size:0.72rem;
+  letter-spacing:0.1em;
+  color:var(--red);
+  text-decoration:none;
+  border:1px solid var(--red);
+  padding:0.4rem 1rem;
+  transition:background 0.15s,color 0.15s;
+}
+.nav-sign:hover{background:var(--red);color:var(--white);}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  padding:7rem 2rem 3rem;
+  position:relative;
+  display:grid;
+  grid-template-rows:auto auto auto;
+  overflow:hidden;
+}
+
+/* Giant background number */
+.hero-bg-num{
+  position:absolute;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(18rem, 40vw, 45rem);
+  line-height:0.85;
+  color:transparent;
+  -webkit-text-stroke:1px var(--gray2);
+  right:-2%;
+  top:50%;
+  transform:translateY(-50%);
+  pointer-events:none;
+  user-select:none;
+  z-index:0;
+  letter-spacing:-0.02em;
+}
+
+.hero-top{
+  position:relative;z-index:1;
+  display:flex;
+  align-items:flex-start;
+  gap:2rem;
+  margin-bottom:1.5rem;
+}
+.hero-label{
+  font-family:'Courier Prime',monospace;
+  font-size:0.7rem;
+  letter-spacing:0.15em;
+  color:var(--red);
+  border:1px solid var(--red-dim);
+  padding:0.35rem 0.8rem;
+  white-space:nowrap;
+  margin-top:0.6rem;
+}
+
+.hero-h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(5rem, 13vw, 14rem);
+  line-height:0.88;
+  letter-spacing:-0.01em;
+  color:var(--white);
+  position:relative;z-index:1;
+}
+.hero-h1 .red{color:var(--red);}
+.hero-h1 .outline{
+  color:transparent;
+  -webkit-text-stroke:2px var(--white);
+}
+
+.hero-mid{
+  position:relative;z-index:1;
+  display:grid;
+  grid-template-columns:1fr 2px 1fr;
+  gap:0 2.5rem;
+  align-items:start;
+  margin-top:2rem;
+  padding-top:2rem;
+  border-top:1px solid var(--gray2);
+}
+.hero-divider{background:var(--gray2);}
+.hero-desc{
+  font-size:1.1rem;
+  font-weight:300;
+  color:#9A9A8A;
+  line-height:1.6;
+  max-width:400px;
+}
+.hero-desc strong{color:var(--white);font-weight:700;}
+
+.hero-right{display:flex;flex-direction:column;gap:1.2rem;}
+.hero-stat-row{
+  display:flex;
+  align-items:baseline;
+  gap:1rem;
+  border-bottom:1px solid var(--gray2);
+  padding-bottom:1rem;
+}
+.hero-stat-n{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:3.5rem;
+  letter-spacing:-0.02em;
+  color:var(--red);
+  line-height:1;
+}
+.hero-stat-l{
+  font-family:'Courier Prime',monospace;
+  font-size:0.7rem;
+  letter-spacing:0.1em;
+  color:var(--muted);
+  text-transform:uppercase;
+}
+
+.hero-cta{
+  display:inline-block;
+  margin-top:1rem;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.4rem;
+  letter-spacing:0.1em;
+  color:var(--black);
+  background:var(--red);
+  padding:0.9rem 2.5rem;
+  text-decoration:none;
+  border:none;
+  position:relative;
+  transition:transform 0.15s;
+  align-self:flex-start;
+}
+.hero-cta::after{
+  content:'';
+  position:absolute;
+  bottom:-4px;right:-4px;
+  width:100%;height:100%;
+  border:1px solid var(--red);
+  z-index:-1;
+  transition:bottom 0.15s,right 0.15s;
+}
+.hero-cta:hover{transform:translate(-2px,-2px);}
+.hero-cta:hover::after{bottom:-6px;right:-6px;}
+
+/* ── TICKER ── */
+.ticker{
+  background:var(--red);
+  padding:0.65rem 0;
+  overflow:hidden;
+  white-space:nowrap;
+  border-top:none;
+  border-bottom:1px solid var(--red-dim);
+}
+.ticker-inner{
+  display:inline-block;
+  animation:ticker 22s linear infinite;
+}
+.ticker-text{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1rem;
+  letter-spacing:0.18em;
+  color:var(--white);
+  padding:0 2.5rem;
+}
+.ticker-dot{color:rgba(255,255,255,0.4);padding:0 0.5rem;}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── SECTIONS COMMON ── */
+.section{padding:6rem 2rem;}
+.s-label{
+  font-family:'Courier Prime',monospace;
+  font-size:0.68rem;
+  letter-spacing:0.18em;
+  color:var(--muted);
+  margin-bottom:2rem;
+  display:flex;align-items:center;gap:1rem;
+}
+.s-label::after{content:'';flex:1;height:1px;background:var(--gray2);}
+
+/* ── VOCES ── */
+#voces{background:var(--black);}
+
+.voces-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+  border:1px solid var(--gray2);
+}
+.voz{
+  padding:2.5rem;
+  border-right:1px solid var(--gray2);
+  border-bottom:1px solid var(--gray2);
+  position:relative;
+  transition:background 0.2s;
+}
+.voz:nth-child(2n){border-right:none;}
+.voz:nth-child(3),.voz:nth-child(4){border-bottom:none;}
+.voz:hover{background:var(--gray);}
+
+.voz-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:4rem;
+  color:var(--gray2);
+  line-height:1;
+  margin-bottom:0.5rem;
+  letter-spacing:-0.03em;
+}
+.voz-quote{
+  font-family:'Barlow Condensed',sans-serif;
+  font-style:italic;
+  font-size:1.2rem;
+  font-weight:300;
+  color:var(--white);
+  line-height:1.5;
+  margin-bottom:1.5rem;
+}
+.voz-quote::before{content:'"';color:var(--red);font-size:1.4em;line-height:0;vertical-align:-0.2em;margin-right:3px;}
+.voz-author{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+}
+.voz-name{
+  font-family:'Courier Prime',monospace;
+  font-size:0.75rem;
+  font-weight:700;
+  letter-spacing:0.06em;
+  color:var(--white);
+}
+.voz-place{
+  font-family:'Courier Prime',monospace;
+  font-size:0.65rem;
+  color:var(--muted);
+  letter-spacing:0.06em;
+  margin-top:2px;
+}
+.voz-tag{
+  font-family:'Courier Prime',monospace;
+  font-size:0.65rem;
+  letter-spacing:0.1em;
+  color:var(--red);
+  border:1px solid var(--red-dim);
+  padding:0.25rem 0.6rem;
+}
+
+/* ── DATOS SECTION ── */
+#datos{
+  background:var(--gray);
+  border-top:1px solid var(--gray2);
+  border-bottom:1px solid var(--gray2);
+}
+
+.datos-layout{
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:5rem;
+  align-items:center;
+}
+.datos-text{}
+.datos-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3rem,6vw,6.5rem);
+  line-height:0.9;
+  letter-spacing:-0.01em;
+  color:var(--white);
+  margin-bottom:2rem;
+}
+.datos-title .red{color:var(--red);}
+.datos-title .outline{color:transparent;-webkit-text-stroke:1.5px var(--white);}
+.datos-body{
+  font-size:1rem;
+  font-weight:300;
+  color:#7A7A6A;
+  line-height:1.7;
+  max-width:380px;
+}
+.datos-body strong{color:var(--white);}
+
+.datos-nums{}
+.dato-item{
+  display:flex;
+  align-items:baseline;
+  gap:1.2rem;
+  padding:1.8rem 0;
+  border-bottom:1px solid var(--gray2);
+}
+.dato-item:first-child{border-top:1px solid var(--gray2);}
+.dato-n{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:3.8rem;
+  letter-spacing:-0.03em;
+  color:var(--white);
+  line-height:1;
+  min-width:120px;
+}
+.dato-n.accent{color:var(--red);}
+.dato-desc{
+  font-family:'Courier Prime',monospace;
+  font-size:0.75rem;
+  letter-spacing:0.07em;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+/* ── PILARES ── */
+#pilares{background:var(--black);}
+
+.pilares-list{
+  display:flex;
+  flex-direction:column;
+  gap:0;
+}
+.pilar{
+  display:grid;
+  grid-template-columns:80px 1fr 1fr;
+  gap:2rem;
+  align-items:start;
+  padding:2.5rem 0;
+  border-bottom:1px solid var(--gray2);
+  transition:background 0.15s;
+}
+.pilar:first-child{border-top:1px solid var(--gray2);}
+.pilar:hover{background:var(--gray);padding-left:1.5rem;margin-left:-1.5rem;padding-right:1.5rem;}
+.pilar-index{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:2.5rem;
+  color:var(--gray2);
+  letter-spacing:-0.02em;
+  line-height:1;
+}
+.pilar-titulo{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.8rem;
+  letter-spacing:0.04em;
+  color:var(--white);
+  line-height:1.1;
+}
+.pilar-titulo span{color:var(--red);}
+.pilar-desc{
+  font-size:0.95rem;
+  font-weight:300;
+  color:#6A6A5A;
+  line-height:1.65;
+  padding-top:0.3rem;
+}
+
+/* ── MANIFIESTO ── */
+#manifiesto{
+  background:var(--white);
+  color:var(--black);
+}
+#manifiesto .s-label{color:#999;border-color:#ccc;}
+#manifiesto .s-label::after{background:#ddd;}
+
+.man-layout{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5rem;
+  align-items:start;
+}
+.man-left{}
+.man-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3.5rem,7vw,8rem);
+  line-height:0.88;
+  letter-spacing:-0.01em;
+  color:var(--black);
+  margin-bottom:2rem;
+}
+.man-title .red{color:var(--red);}
+.man-texto{
+  font-family:'Courier Prime',monospace;
+  font-size:0.95rem;
+  line-height:1.8;
+  color:#444;
+  border-left:3px solid var(--red);
+  padding-left:1.5rem;
+  margin-bottom:2.5rem;
+}
+.man-counter{
+  display:flex;
+  align-items:baseline;
+  gap:0.8rem;
+}
+.man-n{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:4.5rem;
+  letter-spacing:-0.04em;
+  color:var(--red);
+  line-height:1;
+}
+.man-l{
+  font-family:'Courier Prime',monospace;
+  font-size:0.7rem;
+  letter-spacing:0.1em;
+  color:#888;
+}
+
+.man-right{}
+.man-form{display:flex;flex-direction:column;gap:0;}
+.form-row{
+  display:flex;
+  flex-direction:column;
+  gap:0.4rem;
+  border-bottom:1px solid #ddd;
+  padding:1.2rem 0;
+}
+.form-row:first-child{border-top:1px solid #ddd;}
+.form-label{
+  font-family:'Courier Prime',monospace;
+  font-size:0.65rem;
+  letter-spacing:0.15em;
+  color:#aaa;
+}
+.form-input{
+  background:transparent;
+  border:none;
+  outline:none;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:1.5rem;
+  font-weight:300;
+  color:var(--black);
+  width:100%;
+  padding:0.2rem 0;
+}
+.form-input::placeholder{color:#ccc;}
+.form-btn{
+  margin-top:2rem;
+  background:var(--black);
+  color:var(--white);
+  border:none;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.4rem;
+  letter-spacing:0.12em;
+  padding:1.1rem 2rem;
+  cursor:crosshair;
+  text-align:left;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  transition:background 0.15s;
+  width:100%;
+}
+.form-btn:hover{background:var(--red);}
+.form-btn span{font-size:1.8rem;transition:transform 0.2s;}
+.form-btn:hover span{transform:translateX(6px);}
+
+/* ── COMUNIDADES ── */
+#comunidades{
+  background:var(--gray);
+  border-top:1px solid var(--gray2);
+}
+.com-grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap:0;
+  border:1px solid var(--gray2);
+  margin-top:1rem;
+}
+.com-item{
+  flex:0 0 calc(100%/3);
+  border-right:1px solid var(--gray2);
+  border-bottom:1px solid var(--gray2);
+  padding:2rem;
+  display:flex;
+  align-items:center;
+  gap:1.2rem;
+  transition:background 0.2s;
+  cursor:default;
+}
+.com-item:nth-child(3n){border-right:none;}
+.com-item:nth-last-child(-n+3){border-bottom:none;}
+.com-item:hover{background:var(--gray2);}
+.com-line{
+  width:3px;
+  height:36px;
+  flex-shrink:0;
+}
+.cl1{background:var(--red);}
+.cl2{background:#5B9E75;}
+.cl3{background:#7A6EA0;}
+.cl4{background:#4A8AAD;}
+.cl5{background:#C9A030;}
+.cl6{background:#888;}
+.com-name{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:1.05rem;
+  font-weight:700;
+  letter-spacing:0.04em;
+  color:var(--white);
+  line-height:1.2;
+}
+.com-sub{
+  font-family:'Courier Prime',monospace;
+  font-size:0.65rem;
+  color:var(--muted);
+  margin-top:2px;
+}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--black);
+  border-top:1px solid var(--gray2);
+  padding:3rem 2rem;
+  display:grid;
+  grid-template-columns:1fr 1px 1fr 1px 1fr;
+  gap:0 3rem;
+  align-items:start;
+}
+.ft-div{background:var(--gray2);}
+.ft-brand{}
+.ft-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:2.5rem;
+  letter-spacing:0.1em;
+  color:var(--white);
+  line-height:1;
+  margin-bottom:0.5rem;
+}
+.ft-title span{color:var(--red);}
+.ft-sub{
+  font-family:'Courier Prime',monospace;
+  font-size:0.7rem;
+  letter-spacing:0.08em;
+  color:var(--muted);
+  line-height:1.7;
+}
+.ft-col h4{
+  font-family:'Courier Prime',monospace;
+  font-size:0.65rem;
+  letter-spacing:0.14em;
+  color:var(--muted2);
+  margin-bottom:1.2rem;
+}
+.ft-col ul{list-style:none;}
+.ft-col li{margin-bottom:0.6rem;}
+.ft-col a{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:1rem;
+  font-weight:300;
+  color:var(--muted);
+  text-decoration:none;
+  letter-spacing:0.04em;
+  transition:color 0.15s;
+}
+.ft-col a:hover{color:var(--red);}
+.footer-bottom{
+  background:var(--black);
+  border-top:1px solid var(--gray2);
+  padding:1rem 2rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.footer-bottom p{
+  font-family:'Courier Prime',monospace;
+  font-size:0.65rem;
+  letter-spacing:0.08em;
+  color:var(--muted2);
+}
+
+/* ── FADE IN ── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+/* ── TOAST ── */
+.toast{
+  position:fixed;bottom:2.5rem;right:2rem;
+  background:var(--white);
+  color:var(--black);
+  font-family:'Courier Prime',monospace;
+  font-size:0.78rem;
+  letter-spacing:0.06em;
+  padding:1rem 1.5rem;
+  border-left:3px solid var(--red);
+  opacity:0;transform:translateX(20px);
+  transition:all 0.3s;pointer-events:none;z-index:999;
+}
+.toast.show{opacity:1;transform:translateX(0);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .hero-mid{grid-template-columns:1fr;}
+  .hero-divider{display:none;}
+  .voces-grid{grid-template-columns:1fr;}
+  .voz:nth-child(2n){border-right:none;}
+  .voz:nth-child(n){border-right:none;}
+  .datos-layout{grid-template-columns:1fr;gap:3rem;}
+  .pilar{grid-template-columns:50px 1fr;}
+  .pilar-desc{grid-column:2;}
+  .man-layout{grid-template-columns:1fr;gap:3rem;}
+  .com-item{flex:0 0 100%;border-right:none;}
+  footer{grid-template-columns:1fr;}
+  .ft-div{display:none;}
+  .nav-links{display:none;}
+  .hero-bg-num{font-size:40vw;right:-5%;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-name">GRI<span>ETA</span></div>
+  <ul class="nav-links">
+    <li><a href="#voces">VOCES</a></li>
+    <li><a href="#datos">DATOS</a></li>
+    <li><a href="#pilares">PILARES</a></li>
+    <li><a href="#comunidades">COMUNIDADES</a></li>
+  </ul>
+  <a href="#manifiesto" class="nav-sign">FIRMAR</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-num">∞</div>
+
+  <div class="hero-top">
+    <span class="hero-label">COLOMBIA · 2025</span>
+  </div>
+
+  <h1 class="hero-h1">
+    NADIE<br>
+    <span class="outline">SOBRA</span><br>
+    <span class="red">AQUÍ.</span>
+  </h1>
+
+  <div class="hero-mid">
+    <p class="hero-desc">
+      <strong>GRIETA</strong> es una campaña por la inclusión real —
+      no la que se publica en afiches, sino la que ocurre cuando
+      una persona puede entrar a un espacio y sentir que tiene el
+      mismo derecho que todos de estar ahí.
+    </p>
+    <div class="hero-divider"></div>
+    <div class="hero-right">
+      <div class="hero-stat-row">
+        <span class="hero-stat-n">9,241</span>
+        <span class="hero-stat-l">FIRMAS RECOGIDAS</span>
+      </div>
+      <div class="hero-stat-row">
+        <span class="hero-stat-n">1,287</span>
+        <span class="hero-stat-l">HISTORIAS COMPARTIDAS</span>
+      </div>
+      <div class="hero-stat-row" style="border:none">
+        <span class="hero-stat-n">48</span>
+        <span class="hero-stat-l">CIUDADES REPRESENTADAS</span>
+      </div>
+      <a href="#manifiesto" class="hero-cta">FIRMA EL MANIFIESTO</a>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-text">INCLUSIÓN</span><span class="ticker-dot">◆</span>
+    <span class="ticker-text">DIVERSIDAD</span><span class="ticker-dot">◆</span>
+    <span class="ticker-text">DIGNIDAD</span><span class="ticker-dot">◆</span>
+    <span class="ticker-text">REPRESENTACIÓN</span><span class="ticker-dot">◆</span>
+    <span class="ticker-text">IGUALDAD</span><span class="ticker-dot">◆</span>
+    <span class="ticker-text">PERTENENCIA</span><span class="ticker-dot">◆</span>
+    <span class="ticker-text">DERECHOS</span><span class="ticker-dot">◆</span>
+    <span class="ticker-text">GRIETA</span><span class="ticker-dot">◆</span>
+    <span class="ticker-text">INCLUSIÓN</span><span class="ticker-dot">◆</span>
+    <span class="ticker-text">DIVERSIDAD</span><span class="ticker-dot">◆</span>
+    <span class="ticker-text">DIGNIDAD</span><span class="ticker-dot">◆</span>
+    <span class="ticker-text">REPRESENTACIÓN</span><span class="ticker-dot">◆</span>
+    <span class="ticker-text">IGUALDAD</span><span class="ticker-dot">◆</span>
+    <span class="ticker-text">PERTENENCIA</span><span class="ticker-dot">◆</span>
+    <span class="ticker-text">DERECHOS</span><span class="ticker-dot">◆</span>
+    <span class="ticker-text">GRIETA</span><span class="ticker-dot">◆</span>
+  </div>
+</div>
+
+<!-- VOCES -->
+<section id="voces" class="section">
+  <div class="s-label reveal">01 — VOCES REALES</div>
+  <div class="voces-grid reveal">
+
+    <div class="voz">
+      <div class="voz-num">01</div>
+      <p class="voz-quote">Llegué a la universidad siendo la única persona negra en mi salón. Hoy soy docente y trabajo para que eso cambie.</p>
+      <div class="voz-author">
+        <div>
+          <div class="voz-name">MARCELA LARGO</div>
+          <div class="voz-place">Cali, Valle del Cauca</div>
+        </div>
+        <span class="voz-tag">COMUNIDAD AFRO</span>
+      </div>
+    </div>
+
+    <div class="voz">
+      <div class="voz-num">02</div>
+      <p class="voz-quote">Mi lengua, el wayuunaiki, es parte de quién soy. Exijo que el Estado la proteja y que mis hijos puedan aprenderla.</p>
+      <div class="voz-author">
+        <div>
+          <div class="voz-name">AMELIA PUSHAINA</div>
+          <div class="voz-place">Riohacha, La Guajira</div>
+        </div>
+        <span class="voz-tag">PUEBLO WAYÚU</span>
+      </div>
+    </div>
+
+    <div class="voz">
+      <div class="voz-num">03</div>
+      <p class="voz-quote">Salir del clóset fue lo más valiente que hice. Quiero que la próxima generación no tenga que ser tan valiente por el mismo motivo.</p>
+      <div class="voz-author">
+        <div>
+          <div class="voz-name">DIEGO FUENTES</div>
+          <div class="voz-place">Medellín, Antioquia</div>
+        </div>
+        <span class="voz-tag">LGBTQ+</span>
+      </div>
+    </div>
+
+    <div class="voz">
+      <div class="voz-num">04</div>
+      <p class="voz-quote">Uso silla de ruedas. El transporte público me excluyó por años. Ahora defiendo el derecho de todos a moverse libremente.</p>
+      <div class="voz-author">
+        <div>
+          <div class="voz-name">JULIÁN ESPINOSA</div>
+          <div class="voz-place">Bogotá D.C.</div>
+        </div>
+        <span class="voz-tag">DISCAPACIDAD</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DATOS -->
+<section id="datos" class="section">
+  <div class="s-label reveal">02 — POR QUÉ IMPORTA</div>
+  <div class="datos-layout reveal">
+    <div class="datos-text">
+      <h2 class="datos-title">
+        LOS<br>
+        <span class="red">NÚMEROS</span><br>
+        <span class="outline">NO MIENTEN</span>
+      </h2>
+      <p class="datos-body">
+        Colombia es uno de los países más biodiversos del mundo —
+        en fauna, en flora, y en <strong>su gente</strong>. Sin embargo,
+        la exclusión sistemática sigue siendo una realidad documentada
+        que afecta millones de personas cada día.
+      </p>
+    </div>
+    <div class="datos-nums">
+      <div class="dato-item">
+        <span class="dato-n accent">65%</span>
+        <span class="dato-desc">DE PERSONAS AFROCOLOMBIANAS<br>REPORTAN DISCRIMINACIÓN LABORAL</span>
+      </div>
+      <div class="dato-item">
+        <span class="dato-n">3 de 10</span>
+        <span class="dato-desc">PERSONAS CON DISCAPACIDAD<br>TIENEN ACCESO A EMPLEO FORMAL</span>
+      </div>
+      <div class="dato-item">
+        <span class="dato-n accent">40%</span>
+        <span class="dato-desc">DE JÓVENES LGBTQ+ HAN SUFRIDO<br>ACOSO EN ENTORNOS EDUCATIVOS</span>
+      </div>
+      <div class="dato-item">
+        <span class="dato-n">87</span>
+        <span class="dato-desc">PUEBLOS INDÍGENAS RECONOCIDOS,<br>MUCHOS SIN REPRESENTACIÓN POLÍTICA</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILARES -->
+<section id="pilares" class="section">
+  <div class="s-label reveal">03 — EN QUÉ CREEMOS</div>
+  <div class="pilares-list reveal">
+    <div class="pilar">
+      <span class="pilar-index">I</span>
+      <div class="pilar-titulo">EDUCACIÓN<br><span>PARA TODOS</span></div>
+      <p class="pilar-desc">Cada persona tiene derecho a aprender en un entorno que reconoce y celebra su identidad. Sin excepción, sin condición.</p>
+    </div>
+    <div class="pilar">
+      <span class="pilar-index">II</span>
+      <div class="pilar-titulo">TRABAJO<br><span>DIGNO</span></div>
+      <p class="pilar-desc">El origen, la apariencia o la orientación no pueden determinar el acceso a oportunidades laborales. La meritocracia real empieza con acceso real.</p>
+    </div>
+    <div class="pilar">
+      <span class="pilar-index">III</span>
+      <div class="pilar-titulo">REPRESENTACIÓN<br><span>REAL</span></div>
+      <p class="pilar-desc">Las instituciones, los medios y los espacios de poder deben reflejar la diversidad del país. No como cuota, sino como normalidad.</p>
+    </div>
+    <div class="pilar">
+      <span class="pilar-index">IV</span>
+      <div class="pilar-titulo">POLÍTICAS<br><span>CONCRETAS</span></div>
+      <p class="pilar-desc">La inclusión no es un slogan de campaña política. Exigimos leyes, presupuestos y mecanismos de control que garanticen derechos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMUNIDADES -->
+<section id="comunidades" class="section">
+  <div class="s-label reveal">04 — QUIÉNES SOMOS</div>
+  <div class="com-grid reveal">
+    <div class="com-item">
+      <div class="com-line cl1"></div>
+      <div>
+        <div class="com-name">COMUNIDADES AFROCOLOMBIANAS</div>
+        <div class="com-sub">CARIBE · PACÍFICO · CENTROS URBANOS</div>
+      </div>
+    </div>
+    <div class="com-item">
+      <div class="com-line cl2"></div>
+      <div>
+        <div class="com-name">PUEBLOS INDÍGENAS</div>
+        <div class="com-sub">87 PUEBLOS RECONOCIDOS EN COLOMBIA</div>
+      </div>
+    </div>
+    <div class="com-item">
+      <div class="com-line cl3"></div>
+      <div>
+        <div class="com-name">PERSONAS LGBTQ+</div>
+        <div class="com-sub">IDENTIDAD · ORIENTACIÓN · EXPRESIÓN</div>
+      </div>
+    </div>
+    <div class="com-item">
+      <div class="com-line cl4"></div>
+      <div>
+        <div class="com-name">PERSONAS CON DISCAPACIDAD</div>
+        <div class="com-sub">FÍSICA · SENSORIAL · COGNITIVA</div>
+      </div>
+    </div>
+    <div class="com-item">
+      <div class="com-line cl5"></div>
+      <div>
+        <div class="com-name">MIGRANTES Y REFUGIADOS</div>
+        <div class="com-sub">+2.9 MILLONES EN COLOMBIA</div>
+      </div>
+    </div>
+    <div class="com-item">
+      <div class="com-line" style="background:#C9A030;"></div>
+      <div>
+        <div class="com-name">MUJERES RURALES</div>
+        <div class="com-sub">CAMPO · TERRITORIO · ECONOMÍA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFIESTO -->
+<section id="manifiesto" class="section">
+  <div class="s-label reveal" style="color:#999;">05 — EL MANIFIESTO</div>
+  <div class="man-layout reveal">
+    <div class="man-left">
+      <h2 class="man-title">
+        FIRMA.<br>
+        <span class="red">TOMA</span><br>
+        POSICIÓN.
+      </h2>
+      <p class="man-texto">
+        "Creo en una Colombia donde cada persona —
+        sin importar su origen, su identidad, su cuerpo
+        o su historia — tiene el mismo derecho
+        a vivir con dignidad, oportunidad y pertenencia.
+        La indiferencia también es una posición.
+        Yo elijo otra."
+      </p>
+      <div class="man-counter">
+        <span class="man-n" id="sig-count">9,241</span>
+        <span class="man-l">PERSONAS YA<br>FIRMARON</span>
+      </div>
+    </div>
+    <div class="man-right">
+      <div class="man-form">
+        <div class="form-row">
+          <label class="form-label">NOMBRE COMPLETO</label>
+          <input class="form-input" id="fn" type="text" placeholder="Tu nombre">
+        </div>
+        <div class="form-row">
+          <label class="form-label">CIUDAD</label>
+          <input class="form-input" id="fc" type="text" placeholder="Tu ciudad">
+        </div>
+        <div class="form-row">
+          <label class="form-label">CORREO (OPCIONAL)</label>
+          <input class="form-input" id="fe" type="email" placeholder="tu@correo.com">
+        </div>
+      </div>
+      <button class="form-btn" onclick="firmar()">
+        FIRMAR EL MANIFIESTO <span>→</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-brand">
+    <div class="ft-title">GRI<span>ETA</span></div>
+    <p class="ft-sub">
+      UNA CAMPAÑA POR LA INCLUSIÓN<br>
+      SOCIAL Y LA DIVERSIDAD.<br>
+      COLOMBIA, 2025.
+    </p>
+  </div>
+  <div class="ft-div"></div>
+  <div class="ft-col">
+    <h4>NAVEGACIÓN</h4>
+    <ul>
+      <li><a href="#voces">Voces</a></li>
+      <li><a href="#datos">Datos</a></li>
+      <li><a href="#pilares">Pilares</a></li>
+      <li><a href="#comunidades">Comunidades</a></li>
+      <li><a href="#manifiesto">Manifiesto</a></li>
+    </ul>
+  </div>
+  <div class="ft-div"></div>
+  <div class="ft-col">
+    <h4>PARTICIPA</h4>
+    <ul>
+      <li><a href="#">Comparte tu historia</a></li>
+      <li><a href="#">Organizaciones aliadas</a></li>
+      <li><a href="#">Kit de difusión</a></li>
+      <li><a href="#">Prensa</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <p>© 2025 GRIETA — CAMPAÑA POR LA INCLUSIÓN SOCIAL</p>
+  <p>HECHO CON PROPÓSITO EN COLOMBIA</p>
+</div>
+
+<div class="toast" id="toast">FIRMA REGISTRADA. GRACIAS POR TOMAR POSICIÓN.</div>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e,i) => {
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('visible'), i*90);
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+let count = 9241;
+function firmar(){
+  const n=document.getElementById('fn').value.trim();
+  const c=document.getElementById('fc').value.trim();
+  if(!n||!c){
+    [document.getElementById('fn'),document.getElementById('fc')].forEach(el=>{
+      if(!el.value.trim()) el.style.borderBottom='2px solid #D63C2A';
+    });
+    return;
+  }
+  count++;
+  document.getElementById('sig-count').textContent=count.toLocaleString('es-CO');
+  document.getElementById('fn').value='';
+  document.getElementById('fc').value='';
+  document.getElementById('fe').value='';
+  ['fn','fc'].forEach(id=>document.getElementById(id).style.borderBottom='');
+  const t=document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3500);
+}
+</script>
+</body>
+</html>
